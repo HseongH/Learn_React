@@ -170,3 +170,78 @@ export default App;
 컴포넌트가 직접 가지고 있는 데이터이며 컴포넌트 내부에서 바뀔 수 있는 값을 의미한다.
 
 리액트에는 두 가지 종류의 state가 있는 데 하나는 클래스형 컴포넌트가 지니고 있는 state이고, 다른 하나는 함수형 컴포넌트에서 useState 함수를 통해 사용하는 state이다.
+
+### 4.1 클래스형 컴포넌트의 state
+
+컴포넌트에 state를 설정할 때는 constructor 메서드를 작성하여 설정한다.
+
+```javascript
+import React from "react";
+import FunctionComponent from "./FunctionComponent";
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0,
+    };
+  }
+
+  render() {
+    return <FunctionComponent />;
+  }
+}
+
+export default App;
+```
+
+constructor는 컴포넌트의 생성자 메서드로 클래스형 컴포넌트에서 constructor를 작성할 때는 반드시 super(props)를 호출해 주어야 한다. 이 함수가 호출되면 현재 클래스형 컴포넌트가 상속받고 있는 리액트의 Component 클래스가 지닌 생성자 함수를 호출해준다.
+
+그 다음 this.state에 초기값을 설정해 주는데 컴포넌트의 state는 객체 형식이어야 한다.
+
+render 함수 내에서 현재 state를 조회할 때는 this.state를 조회하면 된다.
+
+#### **setState**
+
+setState()는 컴포넌트의 state 객체에 대한 업데이트를 실행한다. state가 변경되면, 컴포넌트는 리렌더링된다.
+
+```javascript
+this.setState({ count: count + 1 });
+```
+
+### 4.2 함수형 컴포넌트의 useState
+
+16.8 버전 이후부터는 useState라는 함수를 사용하여 함수형 컴포넌트에서도 state를 사용할 수 있게 되었다.
+
+```javascript
+import React from "react";
+
+const FunctionComponent = (props) => {
+  const [count, setCount] = useState(0);
+
+  return <h1>props 값 출력해보기 {props.name}</h1>;
+};
+
+export default FunctionComponent;
+```
+
+count에는 state 값이, setCount는 count라는 state 값을 수정하는 함수이다. 이때 배열 비구조화 할당을 사용해 배열 안에 들어있는 값을 쉽게 추출해낼 수 있다.
+
+useState 함수의 인자에는 state의 초기값을 넣어준다. 클래스형 컴포넌트와 다르게 state의 초기 값은 객체뿐만 아니라 원하는 모든 값을 넣을 수 있다.
+
+### 4.3 state 사용 시 주의사항
+
+state 값을 변경할 때는 setState 혹은 useState를 통해 전달받은 세터 함수를 사용해야 한다.
+
+다음은 잘못된 사용이다.
+
+```javascript
+// 클래스형 컴포넌트
+this.state.count = this.state.count + 1;
+
+// 함수형 컴포넌트
+const [count, setCount] = useState(0);
+count++;
+```
+
+배열이나 객체를 업데이트해야 할 때는 사본을 만든 뒤 그 사본의 값을 업데이트한 후 setState 혹은 세터 함수를 통해 업데이트한다.
