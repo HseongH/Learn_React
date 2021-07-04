@@ -64,7 +64,7 @@ function reducer(state = initialState, action) {
       return {
         data: {
           ...state.data,
-          id: id + 1,
+          id: 1,
           content: '공부하기',
         },
       };
