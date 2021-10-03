@@ -98,11 +98,11 @@ export default App;
 ```javascript
 import React from "react";
 
-function FunctionComponent() {
+function FunctionalComponent() {
   return <h1>함수형 컴포넌트 사용해보기</h1>;
 }
 
-export default FunctionComponent;
+export default FunctionalComponent;
 ```
 
 ES6의 화살표 함수를 이용하여 구성할 수도 있다.
@@ -110,11 +110,11 @@ ES6의 화살표 함수를 이용하여 구성할 수도 있다.
 ```javascript
 import React from "react";
 
-const FunctionComponent = () => {
+const FunctionalComponent = () => {
   return <h1>함수형 컴포넌트 사용해보기</h1>;
 };
 
-export default FunctionComponent;
+export default FunctionalComponent;
 ```
 
 ---
@@ -132,18 +132,18 @@ props는 부모 컴포넌트가 설정하는 값으로 자식 컴포넌트는 �
 ```javascript
 import React from "react";
 
-const FunctionComponent = (props) => {
+const FunctionalComponent = (props) => {
   return <h1>props 값 출력해보기 {props.name}</h1>;
 };
 
-export default FunctionComponent;
+export default FunctionalComponent;
 ```
 
 ### 3.2 부모 컴포넌트에서 props 값 넘겨주기
 
 ```javascript
 import React from "react";
-import FunctionComponent from "./FunctionComponent";
+import FunctionalComponent from "./FunctionalComponent";
 
 class App extends React.Component {
   constructor(props) {
@@ -152,7 +152,7 @@ class App extends React.Component {
   }
 
   render() {
-    return <FunctionComponent name="레미" />;
+    return <FunctionalComponent name="레미" />;
   }
 }
 
@@ -177,7 +177,7 @@ export default App;
 
 ```javascript
 import React from "react";
-import FunctionComponent from "./FunctionComponent";
+import FunctionalComponent from "./FunctionalComponent";
 
 class App extends React.Component {
   constructor(props) {
@@ -188,7 +188,7 @@ class App extends React.Component {
   }
 
   render() {
-    return <FunctionComponent />;
+    return <FunctionalComponent />;
   }
 }
 
